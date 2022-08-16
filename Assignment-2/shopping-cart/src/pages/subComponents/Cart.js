@@ -1,8 +1,10 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
+  deleteCartItem,
   removeCartItem,
 } from "../../redux/cart/actions/cartActions";
 const Cart = () => {
@@ -14,6 +16,10 @@ const Cart = () => {
   const decrementQuintity = (item) => {
     dispatch(removeCartItem(item));
   };
+  const deleteItem = (item) =>{
+    dispatch(deleteCartItem(item))
+  }
+
   const totalItem = cart.cartItems.length
     ? cart.cartItems.reduce((total, item) => total + item.quintity, 0)
     : 0;
@@ -41,6 +47,12 @@ const Cart = () => {
                   >
                     <AiOutlineMinus />
                   </button>
+                  <span
+                    className="text-3xl text-red-500 cursor-pointer"
+                    onClick={() => deleteItem(item)}
+                  >
+                    <MdDelete />
+                  </span>
                 </div>
               </div>
             </div>

@@ -1,4 +1,8 @@
-import { ADD_TO_CART, REMOVE_CART_ITEM_QUINTITY } from "../actionTypes";
+import {
+  ADD_TO_CART,
+  DELETE_CART_PRODUCT,
+  REMOVE_CART_ITEM_QUINTITY,
+} from "../actionTypes";
 
 const initialState = {
   cartItems: [],
@@ -17,15 +21,10 @@ const cartReducers = (state = initialState, { type, payload }) => {
         cartItems: existProduct
           ? state.cartItems.map((item) =>
               item.id === payload.id
-                ? { ...item, quintity: item.quintity + 1, }
+                ? { ...item, quintity: item.quintity + 1 }
                 : item
             )
           : [...state.cartItems, { ...payload, quintity: 1 }],
-
-        totalPrice: state.cartItems.reduce(
-          (total, item) => total + item.price * item.quintity,
-          0
-        ),
       };
 
     case REMOVE_CART_ITEM_QUINTITY:
@@ -36,10 +35,6 @@ const cartReducers = (state = initialState, { type, payload }) => {
         return {
           ...state,
           cartItems: state.cartItems.filter((item) => item.id !== payload.id),
-          totalPrice: state.cartItems.reduce(
-            (total, item) => total + item.price * item.quintity,
-            0
-          ),
         };
       } else {
         return {
@@ -49,12 +44,14 @@ const cartReducers = (state = initialState, { type, payload }) => {
               ? { ...item, quintity: item.quintity - 1 }
               : item
           ),
-          totalPrice: state.cartItems.reduce(
-            (total, item) => total + item.price * item.quintity,
-            0
-          ),
         };
       }
+    case DELETE_CART_PRODUCT:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== payload.id),
+      };
+
     default:
       return state;
   }

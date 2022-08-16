@@ -12,9 +12,10 @@ export const removeCartItem = (product) =>{
         payload:product
     }
 }
-export const deleteCartItem = () =>{
+export const deleteCartItem = (product) =>{
     return{
         type:DELETE_CART_PRODUCT,
+        payload:product
     }
 }
 
