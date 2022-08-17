@@ -16,9 +16,9 @@ const Cart = () => {
   const decrementQuintity = (item) => {
     dispatch(removeCartItem(item));
   };
-  const deleteItem = (item) =>{
-    dispatch(deleteCartItem(item))
-  }
+  const deleteItem = (item) => {
+    dispatch(deleteCartItem(item));
+  };
 
   const totalItem = cart.cartItems.length
     ? cart.cartItems.reduce((total, item) => total + item.quintity, 0)
@@ -28,7 +28,7 @@ const Cart = () => {
       <div className="bg-white py-4 px-4 shadow-md rounded-lg my-4 mx-4">
         {cart.cartItems.length ? (
           cart.cartItems.map((item) => (
-            <div className="flex justify-between border-b-2 mb-2">
+            <div className="flex justify-between border-b-2 mb-2" key={item.id}>
               <div className="text-lg py-2">
                 <p>{item.title}</p>
               </div>

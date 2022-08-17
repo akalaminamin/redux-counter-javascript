@@ -5,6 +5,26 @@ import {
 } from "../actionTypes";
 
 const initialState = {
+  products: [
+    {
+      id: 1,
+      title: "Asus Vivobook X515MA",
+      quintity: 20,
+      price: 3000,
+    },
+    {
+      id: 2,
+      title: "Asus Vivobook X515MA",
+      quintity: 50,
+      price: 3500,
+    },
+    {
+      id: 3,
+      title: "Asus Vivobook X515MA",
+      quintity: 30,
+      price: 1000,
+    },
+  ],
   cartItems: [],
   totalItems: 0,
   totalPrice: 0,
@@ -12,7 +32,7 @@ const initialState = {
 
 const cartReducers = (state = initialState, { type, payload }) => {
   const existProduct = state.cartItems.find((item) =>
-    item.id === payload.id ? true : false
+    item?.id === payload?.id ? true : false
   );
   switch (type) {
     case ADD_TO_CART:
@@ -51,7 +71,6 @@ const cartReducers = (state = initialState, { type, payload }) => {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== payload.id),
       };
-
     default:
       return state;
   }

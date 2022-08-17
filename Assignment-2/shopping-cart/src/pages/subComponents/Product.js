@@ -1,12 +1,13 @@
 import React from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/actions/cartActions";
 const Product = ({ product }) => {
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
+
   return (
     <>
       <div className="bg-white py-4 px-4 shadow-md rounded-lg my-4 mx-4">
